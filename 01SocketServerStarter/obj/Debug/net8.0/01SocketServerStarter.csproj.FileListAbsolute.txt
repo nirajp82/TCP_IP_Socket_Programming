@@ -1,0 +1,14 @@
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\bin\Debug\net8.0\01SocketServerStarter.exe
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\bin\Debug\net8.0\01SocketServerStarter.deps.json
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\bin\Debug\net8.0\01SocketServerStarter.runtimeconfig.json
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\bin\Debug\net8.0\01SocketServerStarter.dll
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\bin\Debug\net8.0\01SocketServerStarter.pdb
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\obj\Debug\net8.0\01SocketServerStarter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\obj\Debug\net8.0\01SocketServerStarter.AssemblyInfoInputs.cache
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\obj\Debug\net8.0\01SocketServerStarter.AssemblyInfo.cs
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\obj\Debug\net8.0\01SocketServerStarter.csproj.CoreCompileInputs.cache
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\obj\Debug\net8.0\01SocketServerStarter.dll
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\obj\Debug\net8.0\refint\01SocketServerStarter.dll
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\obj\Debug\net8.0\01SocketServerStarter.pdb
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\obj\Debug\net8.0\01SocketServerStarter.genruntimeconfig.cache
+C:\Projects\TCP_IP_Socket_Programming\01SocketServerStarter\01SocketServerStarter\obj\Debug\net8.0\ref\01SocketServerStarter.dll
