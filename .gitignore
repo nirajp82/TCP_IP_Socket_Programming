@@ -4,3 +4,4 @@
 
 # Ignore all .dll files in any subdirectory
 *.dll
+/.vs/SocketProgramming
