@@ -21,16 +21,18 @@ class Program
             // If successful, a connection is established. If the server is unreachable or the IP/port is incorrect,
             // a SocketException will be thrown.
             socketClient.Connect(ipAddress, port);
-            Console.WriteLine($"Connected to {ipAddress} on port {port}. Type command and press enter to send it to the server. Type <EXIT> to the close.");
+            Console.WriteLine($"Connected to {ipAddress} on port {port}.");
 
             string inputCommand = string.Empty;
-            while (true) 
+            while (true)
             {
+                Console.Write($"Type command and press enter to send it to the server. Type <EXIT> to the close. >> ");
+                
                 // Read command from user input
                 inputCommand = Console.ReadLine();
 
                 // If the user types <EXIT>, break the loop and close the connection
-                if (inputCommand.Equals("<EXIT>", StringComparison.OrdinalIgnoreCase))
+                if (inputCommand!.Equals("<EXIT>", StringComparison.OrdinalIgnoreCase))
                 {
                     break;
                 }
@@ -46,11 +48,9 @@ class Program
                 int bytesRead = socketClient.Receive(buffReceived); // Receive data from the server
 
                 // Display the received data
-                Console.WriteLine($"Data Received: {Encoding.ASCII.GetString(buffReceived, 0, bytesRead)}");
+                Console.WriteLine($"Data Received from the server: {Encoding.ASCII.GetString(buffReceived, 0, bytesRead)}");
             }
 
-            // Close the socket connection once the user exits the loop
-            socketClient.Close();
             Console.WriteLine("\nConnection closed.");
         }
         catch (SocketException ex)
@@ -60,7 +60,16 @@ class Program
         }
         finally
         {
-            socketClient?.Shutdown(SocketShutdown.Both);
+            if (socketClient != null)
+            {
+                if (socketClient.Connected)
+                {
+                    socketClient?.Shutdown(SocketShutdown.Both);
+                }
+                // Close the socket connection once the user exits the loop
+                socketClient?.Close();
+                socketClient?.Dispose();
+            }
         }
     }
 
