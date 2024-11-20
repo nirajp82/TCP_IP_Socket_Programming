@@ -1,7 +1,9 @@
 # Ignore all bin and obj folders in any subdirectory
 **/bin/
 **/obj/
+**/.vs/
 
 # Ignore all .dll files in any subdirectory
 *.dll
 /.vs/SocketProgramming
+/.vs/*
