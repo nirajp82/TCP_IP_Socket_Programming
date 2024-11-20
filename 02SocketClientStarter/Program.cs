@@ -26,13 +26,13 @@ class Program
             string inputCommand = string.Empty;
             while (true)
             {
-                Console.Write($"Type command and press enter to send it to the server. Type <EXIT> to the close. >> ");
+                Console.Write($"Type command and press enter to send it to the server. Type exit to the close. >> ");
                 
                 // Read command from user input
                 inputCommand = Console.ReadLine();
 
-                // If the user types <EXIT>, break the loop and close the connection
-                if (inputCommand!.Equals("<EXIT>", StringComparison.OrdinalIgnoreCase))
+                // If the user types exit, break the loop and close the connection
+                if (inputCommand!.Equals("exit", StringComparison.OrdinalIgnoreCase))
                 {
                     break;
                 }
@@ -78,7 +78,7 @@ class Program
     {
         while (true)
         {
-            Console.Write("Enter the IP address of the server: ");
+            Console.Write("Enter the IP address of the server: Default 127.0.0.1 >> ");
             string? ipAddress = Console.ReadLine();
 
             if (IPAddress.TryParse(ipAddress, out _))
@@ -87,7 +87,8 @@ class Program
             }
             else
             {
-                Console.WriteLine("Invalid IP address format. Please enter a valid IP address.");
+                Console.WriteLine($"Invalid IP address. Using local loopback 127.0.0.1 instead.");
+                return "127.0.0.1";
             }
         }
     }
@@ -98,7 +99,7 @@ class Program
         int port;
         while (true)
         {
-            Console.Write("Enter the port number: ");
+            Console.Write("Enter the port number: Default 23000 >> ");
             string? portInput = Console.ReadLine();
 
             if (int.TryParse(portInput, out port) && port >= 1 && port <= 65535)
@@ -107,7 +108,8 @@ class Program
             }
             else
             {
-                Console.WriteLine("Invalid port number. Please enter a valid port number between 1 and 65535.");
+                Console.WriteLine("Invalid port number. Using default Port 23000.");
+                return 23000;
             }
         }
     }

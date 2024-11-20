@@ -54,7 +54,7 @@ try
     }
     // Display the complete message received from the client
     string fullMessage = dataBuilder.ToString().Trim();
-    Console.WriteLine($"Full message received sent by client: {fullMessage}");
+    Console.WriteLine($"Data received, sent by client: {fullMessage}");
 
     // Close the client socket after the communication is done
     clientSocket.Close();
