@@ -46,7 +46,7 @@ namespace AsyncTCPServerSocket
             catch (SocketException ex)
             {
                 // Catch exception if listener stops or cannot start
-                Console.WriteLine($"Seems like listener was stopped: {ex}");
+                Console.WriteLine($"Seems like listener was stopped: {ex.Message}");
             }
         }
 
@@ -144,7 +144,7 @@ namespace AsyncTCPServerSocket
                 byte[] buffMessage = Encoding.UTF8.GetBytes(message);  // Convert the message to a byte array
 
                 // Loop through all connected clients, excluding the sender
-                foreach (var tcpClient in _tcpClients.Where(c => c != tcpClientSender))
+                foreach (var tcpClient in _tcpClients)//.Where(c => c != tcpClientSender))
                 {
                     // Get the NetworkStream for the client and send the message
                     NetworkStream networkStream = tcpClient.GetStream();
