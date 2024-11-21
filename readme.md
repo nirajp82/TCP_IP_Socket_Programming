@@ -20,7 +20,7 @@ This document explains several important networking concepts used in TCP communi
 ### **What is `TcpListener`?**
 `TcpListener` is a class in .NET used to listen for incoming TCP connection requests. It acts as a server-side socket that listens on a specified port for client connections. It accepts connections from clients and can manage multiple client interactions.
 
-- **Why It’s Needed**: `TcpListener` is crucial for creating a server application that can listen for and accept connections from remote clients. It is the first step in enabling a TCP-based communication server.
+- **Why Itâ€™s Needed**: `TcpListener` is crucial for creating a server application that can listen for and accept connections from remote clients. It is the first step in enabling a TCP-based communication server.
   
 - **Common Usage**: `TcpListener.Start()` begins the listening process, and `TcpListener.AcceptTcpClient()` or `AcceptTcpClientAsync()` is used to accept incoming client connections.
 
@@ -40,7 +40,7 @@ This document explains several important networking concepts used in TCP communi
 ### **What is `TcpClient`?**
 `TcpClient` is a .NET class that establishes a TCP connection to a remote server. Once connected, it allows communication between the client and server using a stream.
 
-- **Why It’s Needed**: `TcpClient` allows the client to initiate communication with a server over TCP. After a successful connection, it provides a stream that can be used to send and receive data.
+- **Why Itâ€™s Needed**: `TcpClient` allows the client to initiate communication with a server over TCP. After a successful connection, it provides a stream that can be used to send and receive data.
 
 ### **Key Points**:
 - It is used on the client side to initiate a connection to the server.
@@ -57,7 +57,7 @@ This document explains several important networking concepts used in TCP communi
 ### **What is `NetworkStream`?**
 `NetworkStream` is a .NET class that provides methods to read and write data over a network connection. It is typically obtained from a `TcpClient` or `TcpListener` and is used for byte-level data transmission.
 
-- **Why It’s Needed**: It abstracts the underlying socket and provides easy methods for data transfer between a client and server, such as `Read` and `Write`.
+- **Why Itâ€™s Needed**: It abstracts the underlying socket and provides easy methods for data transfer between a client and server, such as `Read` and `Write`.
 
 ### **Key Points**:
 - It represents the actual data channel between the server and client over TCP.
@@ -74,7 +74,7 @@ This document explains several important networking concepts used in TCP communi
 ### **What is `SslStream`?**
 `SslStream` is a class in .NET used to implement SSL (Secure Sockets Layer) or TLS (Transport Layer Security) encryption over a `NetworkStream`. It ensures secure communication between the client and the server by encrypting the data transmitted over the network.
 
-- **Why It’s Needed**: `SslStream` is essential for encrypting sensitive data, especially in environments where security is a priority. It protects against data interception (man-in-the-middle attacks) and eavesdropping.
+- **Why Itâ€™s Needed**: `SslStream` is essential for encrypting sensitive data, especially in environments where security is a priority. It protects against data interception (man-in-the-middle attacks) and eavesdropping.
 
 ### **Key Points**:
 - It wraps around a `NetworkStream` and encrypts the data.
@@ -93,7 +93,7 @@ This document explains several important networking concepts used in TCP communi
 ### **What is `ReadAsync`?**
 `ReadAsync` is an asynchronous method used to read data from a `Stream` (e.g., `NetworkStream`, `SslStream`) without blocking the main thread. It is part of the .NET asynchronous programming model and is essential for scalable network applications.
 
-- **Why It’s Needed**: `ReadAsync` allows the server to read data asynchronously, enabling the server to handle many simultaneous connections without blocking. This is particularly important in real-time or high-performance applications.
+- **Why Itâ€™s Needed**: `ReadAsync` allows the server to read data asynchronously, enabling the server to handle many simultaneous connections without blocking. This is particularly important in real-time or high-performance applications.
 
 ### **Key Points**:
 - It allows non-blocking, asynchronous reading of data.
@@ -142,8 +142,6 @@ This document explains several important networking concepts used in TCP communi
 ---
 
 ## **8. Important Topics**
-
-Certainly! Below are answers to some of the important interview questions related to networking and TCP communication, which are relevant to the concepts discussed earlier.
 
 ---
 
@@ -203,11 +201,11 @@ The key use of `SslStream` is to provide security over an insecure network, prev
 
 ### **6. How does certificate validation work in `SslStream`?**
 
-- When a client and server establish an SSL/TLS connection using `SslStream`, the server typically sends a digital certificate that proves its identity. The client verifies this certificate to ensure it’s connecting to the correct server.
+- When a client and server establish an SSL/TLS connection using `SslStream`, the server typically sends a digital certificate that proves its identity. The client verifies this certificate to ensure itâ€™s connecting to the correct server.
 - **Validation Process**:
   - The client checks whether the certificate is signed by a trusted Certificate Authority (CA).
   - It verifies that the certificate is not expired and is valid for the domain it's connected to.
-  - The certificate’s public key is used to encrypt a session key, ensuring that communication can be securely established.
+  - The certificateâ€™s public key is used to encrypt a session key, ensuring that communication can be securely established.
   
 - **Custom Validation**: In some scenarios, custom validation can be performed by providing a callback method that is invoked during the SSL handshake. This callback can be used to validate the certificate against specific criteria or handle special cases (e.g., self-signed certificates).
 
