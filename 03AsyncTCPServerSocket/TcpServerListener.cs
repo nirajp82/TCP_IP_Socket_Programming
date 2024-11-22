@@ -1,10 +1,35 @@
-﻿using System.Net;
+﻿using System;
+using System.Diagnostics;
+using System.Net;
+using System.Net.Http;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Text;
 
 namespace AsyncTCPServerSocket
 {
+    public class ClientConnectedArgs : EventArgs
+    {
+        public string ConnectedClient { get; set; }
+
+        public ClientConnectedArgs(string connectedClient)
+        {
+            ConnectedClient = connectedClient;
+        }
+    }
+
+    public class ClientDataReceivedArgs : EventArgs
+    {
+        public string ConnectedClient { get; set; }
+        public string Data { get; set; }
+
+        public ClientDataReceivedArgs(string connectedClient, string data)
+        {
+            ConnectedClient = connectedClient;
+            Data = data;
+        }
+    }
+
     public class TcpServerListener
     {
         // TcpListener listens for incoming TCP connection requests
@@ -12,6 +37,9 @@ namespace AsyncTCPServerSocket
 
         // Collection to track active TcpClients
         ICollection<TcpClient> _tcpClients = new List<TcpClient>();
+
+        public event EventHandler<ClientConnectedArgs> ClientConnected;
+        public event EventHandler<ClientDataReceivedArgs> ClientDataReceived;
 
         // Method to start listening for client connections on the given IP address and port
         public async Task StartListeningAsync(IPAddress? ipAddr = null, int port = 23000)
@@ -36,8 +64,8 @@ namespace AsyncTCPServerSocket
                     // Accept a client connection asynchronously
                     var tcpClient = await _listener.AcceptTcpClientAsync();
                     _tcpClients.Add(tcpClient);  // Add the connected client to the list of active clients
-                    Console.WriteLine($"TCP client connected successfully: ClientEndPoint: " +
-                        $"{tcpClient.Client.RemoteEndPoint}, TotalCount:{_tcpClients.Count}");
+
+                    OnClientConnected(new ClientConnectedArgs(tcpClient.Client.RemoteEndPoint!.ToString()));
 
                     // Start a new task to handle the client's data asynchronously
                     var _ = Task.Run(async () => await ReadTcpClientDataAsync(tcpClient));
@@ -48,6 +76,19 @@ namespace AsyncTCPServerSocket
                 // Catch exception if listener stops or cannot start
                 Console.WriteLine($"Seems like listener was stopped: {ex.Message}");
             }
+        }
+
+        protected virtual void OnClientConnected(ClientConnectedArgs e)
+        {
+            Console.WriteLine($"TCP client connected successfully: ClientEndPoint: " +
+                $"{e.ConnectedClient}, TotalCount:{_tcpClients.Count}");
+            ClientConnected?.Invoke(this, e);
+        }
+
+        protected virtual void OnClientDataReceived(ClientDataReceivedArgs e)
+        {
+            Console.WriteLine($"Client {e.ConnectedClient} ReceivedData: {e.Data}");
+            ClientDataReceived?.Invoke(this, e);
         }
 
         // Method to handle client communication asynchronously
@@ -97,10 +138,10 @@ namespace AsyncTCPServerSocket
 
                 // Convert the received buffer to a string
                 string? receivedData = new string(buffer);
-
                 // Echo the received message to all other connected clients
                 await EchoMessageToAllTcpClientAsync(tcpClient, receivedData);
-                Console.WriteLine($"Data received, sent by client: {receivedData}");
+
+                OnClientDataReceived(new ClientDataReceivedArgs(tcpClient.Client.RemoteEndPoint!.ToString(), receivedData));
 
                 // Clear the buffer after processing
                 Array.Clear(buffer, 0, bytesReceived);

@@ -89,7 +89,8 @@ namespace _04AsyncTCPClientSocket
                     // If no data is received (i.e., the server has closed the connection), break the loop
                     if (bytesReceived == 0)
                     {
-                        Console.WriteLine($"Disconnected from server.");
+                        OnRaisePeerDisconnectedEvent(_tcpClient.Client.RemoteEndPoint!.ToString());
+                        _tcpClient.Close();
                         break;
                     }
 
@@ -105,6 +106,11 @@ namespace _04AsyncTCPClientSocket
                 // Handle exceptions related to reading data from the server
                 Console.WriteLine($"Read data from the server: {ex}");
             }
+        }
+
+        protected virtual void OnRaisePeerDisconnectedEvent(string connectedServer)
+        {
+            Console.WriteLine($"Server diconnected: {connectedServer}");
         }
     }
 }
