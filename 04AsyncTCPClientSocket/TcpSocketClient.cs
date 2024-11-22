@@ -56,7 +56,7 @@ namespace _04AsyncTCPClientSocket
                 clientStreamWriter.AutoFlush = true; // Ensure that data is sent immediately without buffering
 
                 // Asynchronously send the message to the server
-                await clientStreamWriter.WriteAsync(msgData);
+                await clientStreamWriter.WriteLineAsync(msgData);
                 Console.WriteLine(); // Output a new line for readability after sending
             }
         }

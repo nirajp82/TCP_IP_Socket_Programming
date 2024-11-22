@@ -79,6 +79,12 @@ namespace AsyncTCPServerSocket
             {
                 Console.WriteLine($"Server is ready to read data from the client.");
 
+                /*
+                 ReadAsync: Use ReadAsync for reading raw, potentially binary data or when you need control 
+                            over the number of bytes you read.
+                 ReadLineAsync: Use ReadLineAsync when reading structured text data that is separated by lines 
+                            (i.e., lines of text that are terminated by a newline character).
+                 */
                 // Asynchronously read data from the client
                 var bytesReceived = await streamReader.ReadAsync(buffer, 0, buffer.Length);
 
